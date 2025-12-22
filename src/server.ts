@@ -1,8 +1,12 @@
 import app from './app';
 
+import dotenv from 'dotenv';
+
+dotenv.config();
+
 function server() {
-  app.listen(5000, () => {
-    console.log('Server is running');
+  app.listen(process.env.PORT, () => {
+    console.log(`Server is running at ${process.env.PORT}`);
   });
 }
 server();
