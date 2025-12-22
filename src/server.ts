@@ -1,12 +1,16 @@
+import mongoose from 'mongoose';
 import app from './app';
+import config from './app/config';
 
-import dotenv from 'dotenv';
+async function server() {
+  try {
+    await mongoose.connect(config.database_url as string);
 
-dotenv.config();
-
-function server() {
-  app.listen(process.env.PORT, () => {
-    console.log(`Server is running at ${process.env.PORT}`);
-  });
+    app.listen(process.env.PORT, () => {
+      console.log(`Server is running at ${config.port}`);
+    });
+  } catch (error) {
+    console.log(error);
+  }
 }
 server();
