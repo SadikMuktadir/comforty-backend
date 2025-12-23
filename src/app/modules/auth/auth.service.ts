@@ -20,7 +20,18 @@ const registerUser = async (payload: IUser, file: any) => {
   }
   const userData = { ...payload, password: hashedPassword, image: imageUrl };
   const result = await User.create(userData);
-  return { user: result };
+  const token = jwt.sign(
+    {
+      image: result.image,
+      email: result.email,
+      name: result.name,
+      role: result.role,
+    },
+    config.jwt_secret || 'secret-token',
+    { expiresIn: '30d' },
+  );
+
+  return { token, user: result };
 };
 
 const loginUser = async (payload: ILoginUser) => {

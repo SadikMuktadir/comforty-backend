@@ -7,6 +7,7 @@ const registerUser = async (req: Request, res: Response) => {
   res.status(201).send({
     success: true,
     message: 'User created successfully',
+    token: result?.token,
     data: result?.user,
   });
 };
