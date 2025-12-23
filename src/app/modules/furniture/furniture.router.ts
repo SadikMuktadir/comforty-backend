@@ -9,5 +9,9 @@ furnitureRouter.get(
   '/all-furniture/:furnitureId',
   furnitureController.getSingleFurniture,
 );
+furnitureRouter.patch(
+  '/update-furniture/:furnitureId',
+  furnitureController.updateFurniture,
+);
 
 export default furnitureRouter;

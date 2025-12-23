@@ -16,8 +16,14 @@ const getSingleFurniture = async (id: string) => {
   return result;
 };
 
+const updateFurniture = async (id: string, data: IFurniture) => {
+  const result = await Furniture.findByIdAndUpdate(id, data, { new: true });
+  return result;
+};
+
 export const furnitureService = {
   createFurniture,
   getFurniture,
   getSingleFurniture,
+  updateFurniture,
 };

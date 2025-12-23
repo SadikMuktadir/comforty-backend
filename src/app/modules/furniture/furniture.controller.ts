@@ -54,9 +54,29 @@ const getSingleFurniture = async (req: Request, res: Response) => {
     });
   }
 };
+const updateFurniture = async (req: Request, res: Response) => {
+  try {
+    const furnitureId = req.params.furnitureId;
+    const body = req.body;
+    const result = await furnitureService.updateFurniture(furnitureId, body);
+    res.status(201).send({
+      success: true,
+      message: 'Furniture update Succesfully',
+      data: result,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: 'Furniture is not updated',
+      error: error,
+    });
+  }
+};
 
 export const furnitureController = {
   createFurniture,
   getFurniture,
   getSingleFurniture,
+  updateFurniture,
 };
