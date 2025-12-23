@@ -5,3 +5,7 @@ export interface IUser {
   password: string;
   role?: 'admin' | 'user';
 }
+export interface ILoginUser {
+  email: string;
+  password: string;
+}

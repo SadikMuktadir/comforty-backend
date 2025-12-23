@@ -14,4 +14,6 @@ authRouter.post(
   authController.registerUser,
 );
 
+authRouter.post('/login-user', authController.loginUser);
+
 export default authRouter;
