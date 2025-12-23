@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import { NextFunction, Request, Response, Router } from 'express';
 import { furnitureController } from './furniture.controller';
 import { upload } from '../../utils/hosting/sendImageToCloudinary';
 

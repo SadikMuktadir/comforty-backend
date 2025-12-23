@@ -1,0 +1,17 @@
+import { NextFunction, Request, Response, Router } from 'express';
+import { upload } from '../../utils/hosting/sendImageToCloudinary';
+import { authController } from './auth.controller';
+
+const authRouter = Router();
+
+authRouter.post(
+  '/register-user',
+  upload.single('file'),
+  (req: Request, res: Response, next: NextFunction) => {
+    req.body = JSON.parse(req.body.data);
+    next();
+  },
+  authController.registerUser,
+);
+
+export default authRouter;
