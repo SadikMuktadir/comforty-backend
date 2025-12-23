@@ -22,10 +22,10 @@ const registerUser = async (payload: IUser, file: any) => {
   const result = await User.create(userData);
   const token = jwt.sign(
     {
-      image: result.image,
-      email: result.email,
-      name: result.name,
-      role: result.role,
+      image: result?.image,
+      email: result?.email,
+      name: result?.name,
+      role: result?.role,
     },
     config.jwt_secret || 'secret-token',
     { expiresIn: '30d' },
@@ -69,7 +69,13 @@ const loginUser = async (payload: ILoginUser) => {
   return { token, user };
 };
 
+const getAllUser = async () => {
+  const result = await User.find();
+  return result;
+};
+
 export const authService = {
   registerUser,
   loginUser,
+  getAllUser,
 };
