@@ -1,8 +1,17 @@
+import { sendImageToCloudinary } from '../../utils/hosting/sendImageToCloudinary';
 import { IFurniture } from './furniture.interface';
 import Furniture from './furniture.model';
 
-const createFurniture = async (payload: IFurniture) => {
-  const result = await Furniture.create(payload);
+const createFurniture = async (payload: IFurniture, file: any) => {
+  let imageUrl;
+  if (file) {
+    const imageName = `${payload?.name}`;
+    const path = file?.path;
+    const uploadImage = await sendImageToCloudinary(imageName, path);
+    imageUrl = uploadImage?.secure_url;
+  }
+  const furnitureData = { ...payload, image: imageUrl };
+  const result = await Furniture.create(furnitureData);
   return result;
 };
 

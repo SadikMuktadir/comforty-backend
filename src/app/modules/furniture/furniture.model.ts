@@ -8,6 +8,7 @@ const furnitureSchema = new Schema<IFurniture>(
     },
     name: {
       type: String,
+      required: true,
       unique: true,
     },
     description: {

@@ -4,7 +4,7 @@ import { furnitureService } from './furniture.service';
 const createFurniture = async (req: Request, res: Response) => {
   try {
     const payload = req.body;
-    const result = await furnitureService.createFurniture(payload);
+    const result = await furnitureService.createFurniture(payload, req?.file);
     res.status(201).send({
       success: true,
       message: 'Furniture Created Succesfully',
