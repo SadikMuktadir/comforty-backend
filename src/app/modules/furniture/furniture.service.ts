@@ -21,9 +21,15 @@ const updateFurniture = async (id: string, data: IFurniture) => {
   return result;
 };
 
+const deleteFurniture = async (id: string) => {
+  const result = await Furniture.findByIdAndDelete(id);
+  return result;
+};
+
 export const furnitureService = {
   createFurniture,
   getFurniture,
   getSingleFurniture,
   updateFurniture,
+  deleteFurniture,
 };

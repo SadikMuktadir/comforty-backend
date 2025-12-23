@@ -13,5 +13,9 @@ furnitureRouter.patch(
   '/update-furniture/:furnitureId',
   furnitureController.updateFurniture,
 );
+furnitureRouter.delete(
+  '/delete-furniture/:furnitureId',
+  furnitureController.deleteFurniture,
+);
 
 export default furnitureRouter;

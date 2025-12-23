@@ -73,10 +73,29 @@ const updateFurniture = async (req: Request, res: Response) => {
     });
   }
 };
+const deleteFurniture = async (req: Request, res: Response) => {
+  try {
+    const furnitureId = req.params.furnitureId;
+    const result = await furnitureService.deleteFurniture(furnitureId);
+    res.status(201).send({
+      success: true,
+      message: 'Furniture deleted Succesfully',
+      data: result,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: 'Furniture is not deleted',
+      error: error,
+    });
+  }
+};
 
 export const furnitureController = {
   createFurniture,
   getFurniture,
   getSingleFurniture,
   updateFurniture,
+  deleteFurniture,
 };
