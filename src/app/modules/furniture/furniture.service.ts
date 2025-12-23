@@ -11,7 +11,13 @@ const getFurniture = async () => {
   return result;
 };
 
+const getSingleFurniture = async (id: string) => {
+  const result = await Furniture.findById(id);
+  return result;
+};
+
 export const furnitureService = {
   createFurniture,
   getFurniture,
+  getSingleFurniture,
 };
