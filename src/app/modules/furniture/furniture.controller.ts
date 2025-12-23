@@ -14,7 +14,24 @@ const createFurniture = async (req: Request, res: Response) => {
     console.log(error);
     res.status(500).send({
       success: false,
-      message: 'Product is not created',
+      message: 'Furniture is not created',
+      error: error,
+    });
+  }
+};
+const getFurniture = async (req: Request, res: Response) => {
+  try {
+    const result = await furnitureService.getFurniture();
+    res.status(201).send({
+      success: true,
+      message: 'Furniture get Succesfully',
+      data: result,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: 'Furniture is not get created',
       error: error,
     });
   }
@@ -22,4 +39,5 @@ const createFurniture = async (req: Request, res: Response) => {
 
 export const furnitureController = {
   createFurniture,
+  getFurniture
 };
