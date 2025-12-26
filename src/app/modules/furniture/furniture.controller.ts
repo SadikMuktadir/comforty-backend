@@ -42,7 +42,7 @@ const getSingleFurniture = async (req: Request, res: Response) => {
     const result = await furnitureService.getSingleFurniture(furnitureId);
     res.status(201).send({
       success: true,
-      message: 'Single Furniture get Succesfully',
+      message: 'Single Furniture get',
       data: result,
     });
   } catch (error) {
