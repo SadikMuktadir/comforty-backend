@@ -3,6 +3,7 @@ import config from './app/config';
 import furnitureRouter from './app/modules/furniture/furniture.router';
 import authRouter from './app/modules/auth/auth.router';
 import cors from 'cors';
+import reviewRouter from './app/modules/review/review.router';
 
 const app = express();
 
@@ -17,6 +18,7 @@ app.use(express.json());
 
 app.use('/api/v1', furnitureRouter);
 app.use('/api/v1', authRouter);
+app.use('/api/v1', reviewRouter);
 
 app.get('/', (req, res) => {
   res.send({
