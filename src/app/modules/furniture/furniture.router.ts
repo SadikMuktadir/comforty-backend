@@ -8,7 +8,6 @@ furnitureRouter.post(
   '/create-furniture',
   upload.single('file'),
   (req, res, next) => {
-    req.body = JSON.parse(req.body.data);
     next();
   },
   furnitureController.createFurniture,
