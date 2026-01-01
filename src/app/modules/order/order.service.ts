@@ -4,6 +4,7 @@ import { Types } from 'mongoose';
 import { IOrder } from './order.interface';
 
 const createOrder = async (payload: {
+  userId: string;
   products: { product: string; quantity: number }[];
 }) => {
   if (!payload?.products?.length) throw new Error('Order is not specified');
@@ -31,6 +32,7 @@ const createOrder = async (payload: {
   if (!productDetails.length) throw new Error('No valid products found');
 
   const order: IOrder = await Order.create({
+    user: new Types.ObjectId(payload.userId),
     products: productDetails,
     totalPrice,
     status: 'Pending',
@@ -40,7 +42,7 @@ const createOrder = async (payload: {
 };
 
 const getOrder = async () => {
-  const result = await Order.find();
+  const result = await Order.find().populate('user', 'name email');
   return result;
 };
 

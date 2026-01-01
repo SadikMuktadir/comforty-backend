@@ -2,7 +2,10 @@ import { Request, Response } from 'express';
 import { orderService } from './order.service';
 
 const createOrder = async (req: Request, res: Response) => {
-  const payload = req.body;
+  const payload = {
+    products: req.body.products,
+     userId: req.user!._id, 
+  };
   const order = await orderService.createOrder(payload);
   res.status(201).send({
     success: true,

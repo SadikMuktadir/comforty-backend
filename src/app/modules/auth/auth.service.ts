@@ -22,6 +22,7 @@ const registerUser = async (payload: IUser, file: any) => {
   const result = await User.create(userData);
   const token = jwt.sign(
     {
+      _id: result._id,
       image: result?.image,
       email: result?.email,
       name: result?.name,
@@ -57,6 +58,7 @@ const loginUser = async (payload: ILoginUser) => {
   }
   const token = jwt.sign(
     {
+      _id: user?._id,
       image: user?.image,
       email: user?.email,
       name: user?.name,
