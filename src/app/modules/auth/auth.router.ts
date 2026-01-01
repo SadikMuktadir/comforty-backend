@@ -9,12 +9,13 @@ authRouter.post(
   '/register-user',
   upload.single('file'),
   (req: Request, res: Response, next: NextFunction) => {
+    req.body = JSON.parse(req.body.data);
     next();
   },
   authController.registerUser,
 );
 
 authRouter.post('/login-user', authController.loginUser);
-authRouter.get('/all-user', auth('admin'), authController.getAllUser);
+authRouter.get('/all-user', auth('admin', 'user'), authController.getAllUser);
 
 export default authRouter;
