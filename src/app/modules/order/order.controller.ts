@@ -2,11 +2,8 @@ import { Request, Response } from 'express';
 import { orderService } from './order.service';
 
 const createOrder = async (req: Request, res: Response) => {
-  const payload = {
-    products: req.body.products,
-     userId: req.user!._id, 
-  };
-  const order = await orderService.createOrder(payload);
+  const user = req.user;
+  const order = await orderService.createOrder(user, req.body, req.ip!);
   res.status(201).send({
     success: true,
     message: 'Order Created Succesfully',
@@ -32,7 +29,17 @@ const getOrder = async (req: Request, res: Response) => {
   }
 };
 
+const verifyPayment = async (req: Request, res: Response) => {
+  const order = await orderService.verifyPayment(req.query.order_id as string);
+  res.status(201).send({
+    success: true,
+    message: 'Order verify Succesfully',
+    data: order,
+  });
+};
+
 export const orderController = {
   createOrder,
   getOrder,
+  verifyPayment,
 };

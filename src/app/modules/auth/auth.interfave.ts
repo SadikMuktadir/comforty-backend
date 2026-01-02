@@ -6,6 +6,9 @@ export interface IUser extends Document {
   email: string;
   password: string;
   role?: 'admin' | 'user';
+  phone?: string;
+  address?: string;
+  city?: string;
 }
 export interface ILoginUser {
   email: string;
